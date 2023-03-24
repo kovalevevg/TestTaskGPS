@@ -81,7 +81,7 @@ extension MainViewController: UITableViewDelegate {
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter.selectedPerson != nil
-        ? ((presenter.persons?.count ?? 1) - 1) // -1 когда ячейка уходит в header
+        ? ((presenter.persons?.count ?? 1) - 1) // -1 when cell goes to header
         : (presenter.persons?.count ?? 0)
     }
 
