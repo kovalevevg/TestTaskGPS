@@ -11,7 +11,7 @@ import CoreLocation
 final class MainTableViewCell: UITableViewCell {
     static let identifier = "CustomTableViewCell"
     
-    private let imageAvatar: UIImageView = {
+    private lazy var imageAvatar: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
@@ -19,14 +19,14 @@ final class MainTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let destinationLabel: UILabel = {
+    private lazy var destinationLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +37,6 @@ final class MainTableViewCell: UITableViewCell {
         super.layoutSubviews()
         imageAvatar.layer.cornerRadius = imageAvatar.bounds.height / 2
     }
-
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -47,7 +46,6 @@ final class MainTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
     
     func configureText(_ labelText: String, _ destination: String, _ image: String) {
         nameLabel.text = labelText
