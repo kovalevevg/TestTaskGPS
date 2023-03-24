@@ -127,16 +127,32 @@ final class MainViewPresenter: MainViewPresenterProtocol {
                                                       longitude: source.longitude)
         let location = CLLocationCoordinate2D(latitude: destination.latitude,
                                               longitude: destination.longitude)
-        let distanceInMeters = distance(from: selectedLocation, to: location)
+        let distanceInMeters = distanceBetweenToPoints(from: selectedLocation, to: location)
         let distanceInKm = distanceInMeters.distanceInKmString()
         return distanceInKm
     }
     
-    private func distance(from location1: CLLocationCoordinate2D,
-                          to location2: CLLocationCoordinate2D) -> CLLocationDistance {
-        let clLocation1 = CLLocation(latitude: location1.latitude, longitude: location1.longitude)
-        let clLocation2 = CLLocation(latitude: location2.latitude, longitude: location2.longitude)
-        return clLocation1.distance(from: clLocation2)
+    //  Haversine formula for calculating the distance between two points on the earth's surface
+    private func distanceBetweenToPoints(from location1: CLLocationCoordinate2D,
+                                   to location2: CLLocationCoordinate2D) -> CLLocationDistance {
+        let earthRadiusMeters: CLLocationDistance = 6_371_000
+        
+        // Convert latitude and longitude to radians
+        let latitude1 = location1.latitude.toRadians()
+        let latitude2 = location2.latitude.toRadians()
+        let deltaLatitude = (location2.latitude - location1.latitude).toRadians()
+        let deltaLongitude = (location2.longitude - location1.longitude).toRadians()
+
+        // Calculating the angular distance between points on a sphere
+        let a = sin(deltaLatitude / 2) * sin(deltaLatitude / 2) +
+                cos(latitude1) * cos(latitude2) *
+                sin(deltaLongitude / 2) * sin(deltaLongitude / 2)
+
+        // Calculating the actual distance between points
+        let c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        // Multiply by the radius of the earth to get the distance in meters
+        return earthRadiusMeters * c
     }
 }
 

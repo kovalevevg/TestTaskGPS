@@ -20,6 +20,7 @@
 		97634E6629C8E705000083A0 /* CLLocationDistance+DistanceInKm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97634E6529C8E705000083A0 /* CLLocationDistance+DistanceInKm.swift */; };
 		978E28F829C4997400F41271 /* UserLocation.json in Resources */ = {isa = PBXBuildFile; fileRef = 978E28F729C4997400F41271 /* UserLocation.json */; };
 		978E28FB29C499E300F41271 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E28FA29C499E300F41271 /* JSONManager.swift */; };
+		97B5708529CDA159008F062F /* LatitudeAndlongitude+Radians.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B5708429CDA159008F062F /* LatitudeAndlongitude+Radians.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		97634E6529C8E705000083A0 /* CLLocationDistance+DistanceInKm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationDistance+DistanceInKm.swift"; sourceTree = "<group>"; };
 		978E28F729C4997400F41271 /* UserLocation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserLocation.json; sourceTree = "<group>"; };
 		978E28FA29C499E300F41271 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
+		97B5708429CDA159008F062F /* LatitudeAndlongitude+Radians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LatitudeAndlongitude+Radians.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				97634E6129C8E13C000083A0 /* UIViewControllr+Alert.swift */,
 				97634E6329C8E18C000083A0 /* Double+Rounded.swift */,
 				97634E6529C8E705000083A0 /* CLLocationDistance+DistanceInKm.swift */,
+				97B5708429CDA159008F062F /* LatitudeAndlongitude+Radians.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				973B141029C1CE1D00A65143 /* Person.swift in Sources */,
 				973B13FB29C1C6CF00A65143 /* SceneDelegate.swift in Sources */,
 				973B141329C1D53500A65143 /* MainTableViewCell.swift in Sources */,
+				97B5708529CDA159008F062F /* LatitudeAndlongitude+Radians.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
