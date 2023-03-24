@@ -19,7 +19,7 @@ protocol MainViewPresenterProtocol: AnyObject {
     init(view: MainPresenterProtocol, networkService: NetworkManagerProtocol)
     // Location Methods
     func getUserAddress(fromLocation location: CLLocation,
-                    result: @escaping (_ location: CLLocation?, _ error: Error?) -> ())
+                        result: @escaping (_ location: CLLocation?, _ error: Error?) -> ())
     func updateLocation()
     var location: CLLocation? { get set }
     
@@ -56,7 +56,7 @@ final class MainViewPresenter: MainViewPresenterProtocol {
     // MARK: - Location methods
     
     func getUserAddress(fromLocation location: CLLocation,
-                    result: @escaping (_ location: CLLocation?, _ error: Error?) -> ()) {
+                        result: @escaping (_ location: CLLocation?, _ error: Error?) -> ()) {
         let geocoder = CLGeocoder()
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             guard let location = placemarks?.first?.location else {
@@ -122,7 +122,7 @@ final class MainViewPresenter: MainViewPresenterProtocol {
     }
     
     private func getDistanceBetweenTwoCoordinates(from source: PersonLocation,
-                                   to destination: PersonLocation) -> String {
+                                                  to destination: PersonLocation) -> String {
         let selectedLocation = CLLocationCoordinate2D(latitude: source.latitude,
                                                       longitude: source.longitude)
         let location = CLLocationCoordinate2D(latitude: destination.latitude,
@@ -134,7 +134,7 @@ final class MainViewPresenter: MainViewPresenterProtocol {
     
     //  Haversine formula for calculating the distance between two points on the earth's surface
     private func distanceBetweenToPoints(from location1: CLLocationCoordinate2D,
-                                   to location2: CLLocationCoordinate2D) -> CLLocationDistance {
+                                         to location2: CLLocationCoordinate2D) -> CLLocationDistance {
         let earthRadiusMeters: CLLocationDistance = 6_371_000
         
         // Convert latitude and longitude to radians
@@ -142,15 +142,15 @@ final class MainViewPresenter: MainViewPresenterProtocol {
         let latitude2 = location2.latitude.toRadians()
         let deltaLatitude = (location2.latitude - location1.latitude).toRadians()
         let deltaLongitude = (location2.longitude - location1.longitude).toRadians()
-
+        
         // Calculating the angular distance between points on a sphere
         let a = sin(deltaLatitude / 2) * sin(deltaLatitude / 2) +
-                cos(latitude1) * cos(latitude2) *
-                sin(deltaLongitude / 2) * sin(deltaLongitude / 2)
-
+        cos(latitude1) * cos(latitude2) *
+        sin(deltaLongitude / 2) * sin(deltaLongitude / 2)
+        
         // Calculating the actual distance between points
         let c = 2 * atan2(sqrt(a), sqrt(1 - a))
-
+        
         // Multiply by the radius of the earth to get the distance in meters
         return earthRadiusMeters * c
     }
@@ -158,7 +158,7 @@ final class MainViewPresenter: MainViewPresenterProtocol {
 
 final class LocationPermissionPresenter: LocationPermissionProtocol {
     var clLocationManager: CLLocationManager!
-
+    
     weak var viewLocation: MainPresenterProtocol?
     
     required init(viewLocation: MainPresenterProtocol) {
@@ -177,8 +177,8 @@ final class LocationPermissionPresenter: LocationPermissionProtocol {
             clLocationManager.requestWhenInUseAuthorization()
         case .restricted:
             viewLocation?.showAlert(title: "Error",
-                            message: "Location access restricted from parent control",
-                            actions: nil)
+                                    message: "Location access restricted from parent control",
+                                    actions: nil)
         case .denied:
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { (action) in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -186,14 +186,14 @@ final class LocationPermissionPresenter: LocationPermissionProtocol {
                 }
             }
             viewLocation?.showAlert(title: "Error",
-                            message: "Location access denied. Please allow it from Settings",
-                            actions: [settingsAction])
+                                    message: "Location access denied. Please allow it from Settings",
+                                    actions: [settingsAction])
         case .authorizedAlways, .authorizedWhenInUse:
             clLocationManager.startUpdatingLocation()
         @unknown default:
             viewLocation?.showAlert(title: "Error",
-                            message: "Ooops. Something went wrong",
-                            actions: nil)
+                                    message: "Ooops. Something went wrong",
+                                    actions: nil)
         }
     }
 }

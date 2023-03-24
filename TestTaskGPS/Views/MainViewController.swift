@@ -29,7 +29,7 @@ final class MainViewController: UIViewController {
         presenter = MainViewPresenter(view: self, networkService: networkManager)
         locationPresenter = LocationPermissionPresenter(viewLocation: self)
         locationPresenter.setUpLocationManager(delegate: self)
-
+        
         Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self]_ in
             self?.presenter.updateLocation()
         }
@@ -55,7 +55,7 @@ final class MainViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-
+    
     private func setUpNavigationController() {
         navigationItem.title = "Persons"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -84,7 +84,7 @@ extension MainViewController: UITableViewDataSource {
         ? ((presenter.persons?.count ?? 1) - 1) // -1 when cell goes to header
         : (presenter.persons?.count ?? 0)
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier,
                                                        for: indexPath) as? MainTableViewCell else {
@@ -93,7 +93,7 @@ extension MainViewController: UITableViewDataSource {
         presenter.configureCell(cell, forRowAt: indexPath)
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.moveSelectedRowToTop(in: tableView, at: indexPath)
     }
@@ -117,7 +117,7 @@ extension MainViewController {
         header?.configureText(selectedPerson.name, coordinates, selectedPerson.image)
         return header
     }
-
+    
     @objc func tapOnHeader(_ sender: UITapGestureRecognizer) {
         presenter.selectedPerson = nil
         tableView.reloadData()
