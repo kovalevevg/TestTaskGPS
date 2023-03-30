@@ -1,11 +1,10 @@
 # TestTaskGPS
-Необходимо разработать приложение, отображающее список людей   и расстояние от них до пользователя.
+Need to develop an application that displays a list of people and the distance from them to the user.
 
-## ТЗ:
+## TO DO:
 
-- Каждый элемент списка должен содержать аватар, имя и расстояние до пользователя;
-- Положение пользователя должно быть получено от GPS;
-- При нажатии на человека,информация о нём закрепляется над списком и не пропадает при скролле;
-- При повторном нажатии выбор человека отменяется;
-- Пока есть выбранный человек,расстояния остальных людей отображаются относительно выбранного;
-
+- Each list item must contain the user's avatar, name, and distance to the user;
+- The user's position should be obtained from the GPS;
+- When you click on the person, the information about him/her is fixed above the list and is not lost when you scroll;
+- When you click again, the person is de-selected;
+- As long as there is a selected person, the distances of other people are displayed relative to the selected one;
