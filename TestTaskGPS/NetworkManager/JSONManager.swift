@@ -15,7 +15,7 @@ protocol NetworkManagerProtocol: AnyObject {
 
 final class PersonNetworkManager: NetworkManagerProtocol {
     func getPersonsData(completion: @escaping PersonCompletionBlock) {
-        // получаем путь
+        // Path to json file 
         if let path = Bundle.main.url(forResource: "UserLocation", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: path)
