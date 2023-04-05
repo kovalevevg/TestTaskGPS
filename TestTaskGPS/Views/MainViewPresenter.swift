@@ -77,7 +77,10 @@ final class MainViewPresenter: MainViewPresenterProtocol {
             } else {
                 self.persons?[i].locations.latitude += Double.random(in: -5...5)
                 self.persons?[i].locations.longitude += Double.random(in: -5...5)
+                self.selectedPerson?.locations.latitude += Double.random(in: -5...5)
+                self.selectedPerson?.locations.longitude += Double.random(in: -5...5)
             }
+            self.view?.success()
         }
     }
     

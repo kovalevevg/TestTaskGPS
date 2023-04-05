@@ -32,7 +32,6 @@ final class MainViewController: UIViewController {
         
         Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self]_ in
             self?.presenter.updateLocation()
-            self?.tableView.reloadData()
         }
         
         let notificationCenter = NotificationCenter.default
